@@ -9,8 +9,14 @@ from blog.models import Post
 
 class Comment(models.Model):
 
+    STATUS_ITEMS = (
+        (1, "正常"),
+        (2, "删除"),
+    )
+
     post = models.ForeignKey(Post, verbose_name="文章")
     content = models.CharField(max_length=2000, verbose_name="内容")
+    status = models.IntegerField(default=1, choices=STATUS_ITEMS, verbose_name="状态")
     nickname = models.CharField(max_length=50, verbose_name="昵称")
     website = models.URLField(verbose_name="网站")
     email = models.EmailField(verbose_name="邮箱")
