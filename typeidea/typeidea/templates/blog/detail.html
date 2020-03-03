@@ -1,0 +1,13 @@
+{% extends './base.html' %}
+{% block comment %}
+<h1>{{ post.title }}</h1>
+<div>
+    <ul>
+        <li><a href="/">首页</a></li>
+        <li><a href="">{{ post.category.name }}</a></li>
+        <li><a>正文</a></li>
+    </ul>
+</div>
+{{ post.content }}
+<hr/>
+{% endblock %}

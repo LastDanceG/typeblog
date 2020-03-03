@@ -1,0 +1,61 @@
+<h1>TypeIdea - By LIBSH</h1>
+<ul>
+    {% for cate in nav_cate %}
+    <li>
+        <a href="{% url 'category' cate.id %}">{{ cate.name }}</a>
+    </li>
+    {% endfor%}
+</ul>
+<hr/>
+
+{% block comment %}
+<ul>
+    {% if posts %}
+    {% for post in posts %}
+    <li>
+        title: <a href="{% url 'detail' post.id %}">{{ post.title }}</a><br/>
+        desc: {{ post.desc }}
+    </li>
+    {% endfor %}
+    {% if posts.has_previous %}<a href="?page={{ posts.number|add:'-1' }}">上一页</a>{% endif %}
+    Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+    {% if posts.has_next %}<a href="?page={{ posts.number|add:'1' }}">下一页</a>{% endif %}
+    {% else %}
+    Empty!
+    {% endif %}
+</ul>
+<hr/>
+{% endblock%}
+
+<ul>
+    {% for cate in cate %}
+    <li>
+        <a href="{% url 'category' cate.id %}">{{ cate.name }}</a>
+    </li>
+    {% endfor%}
+</ul>
+<hr/>
+
+<ul>
+    {% for side in side_bar %}
+    <h3>{{ side.title }}</h3>
+    {% if side.display_type == 1 %}
+    {% autoescape off %}
+    {{side.content}}
+    {% endautoescape %}
+    {% elif side.display_type == 2 %}
+    {% for recently_post in recently_posts %}
+    <li>
+        <a href="{% url 'detail' recently_post.id %}">{{ recently_post.title }}</a><br/>
+    </li>
+    {% endfor %}
+    {% elif side.display_type == 4 %}
+    {% for comment in recently_comment %}
+    <li>
+        <a href="{% url 'detail' comment.id %}">{{ comment.post }}</a><br/>
+        {{ comment.content }}
+    </li>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+</ul>
