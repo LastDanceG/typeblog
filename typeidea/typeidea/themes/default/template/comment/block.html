@@ -1,0 +1,29 @@
+<hr/>
+<div class="comment">
+    <form class="form-group" action="/comment/" method="POST">
+        {% csrf_token %}
+        <input name="target" type="hidden" value="{{ request.path }}"/>
+        {{ comment_form }}
+        <input type="submit" value="提交" style="margin-top: 10px" />
+    </form>
+
+    <!-- 评论列表 -->
+    <ul class="list-group">
+        {% if comment_list %}
+            <li class="list-group-item comment-title">
+                评论列表：
+            </li>
+            {% for comment in comment_list %}
+                <li class="list-group-item">
+                    <div class="nickname">
+                        昵称：<a href="{{ comment.website }}" target="_blank">{{ comment.nickname }}</a><br/>
+                        评论时间：<span>{{ comment.create_time }}</span>
+                    </div>
+                    <div class="comment-content">
+                        内容：{{ comment.content }}
+                    </div>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>

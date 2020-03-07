@@ -1,0 +1,25 @@
+{% extends '../blog/base.html' %}
+{% block content %}
+
+<table class="table">
+  <thead style="background-color: #3d4450; color: #fff">
+    <tr>
+        <th scope="col">LOGO</th>
+        <th scope="col">网站名称</th>
+        <th scope="col">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for link in links %}
+    <tr>
+        <th scope="row"><img height="25" src="{{ link.href }}/favicon.ico"></th>
+        <td><a href="{{ link.href }}" target="_blank">{{ link.title }}</a></td>
+        <td></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include 'comment/block.html' %}
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+      <meta charset="utf-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+      <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+      <!--<link href="http://127.0.0.1:8000/static/css/base.css" rel="stylesheet">-->
+      <link href="{% static 'css/base.css' %}" rel="stylesheet">
+      <title>博客</title>
+      {% block style %}
+      {% endblock%}
+  </head>
+  <body>
+	<!-- 顶部导航页 -->
+	<header class="fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-9">
+                    <nav class="nav">
+                        <a class="logo" href="/">UTF-8</a>
+                        <a class="index" href="/">首页</a>
+                        {% for cate in nav_cate %}
+                        <a class="link" href="{% url 'category' cate.id %}">{{ cate.name }}</a>
+                        {% endfor%}
+                        <a class="link" href="/links">友链</a>
+                    </nav>
+                </div>
+                <div class="col-3">
+                    <form action="/" method="get" class="input-group search">
+                        <input name="query" type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                        <span class="input-group-append">
+                            <input type="submit" class="btn btn-secondary" value="GO!">
+                        </span>
+                    </form>
+                </div>
+            </div>
+	    </div>
+	</header>
+
+    <div class="container main">
+		<div class="row">
+            <!-- 列表部分 -->
+			<div class="col-9 left-side">
+                <div class="inner">
+                    {% block content %}
+                    {% endblock%}
+                </div>
+			</div>
+
+			<div class="col-3 right-side">
+                <div class="inner">
+                    {% for side in side_bar %}
+                    <div class="sidebar">
+                        <div class="sidebar-title">{{ side.title }}</div>
+                        <div class="sidebar-content">
+                            {% if side.display_type == 1 %}
+                            {% autoescape off %}
+                            {{side.content}}
+                            {% endautoescape %}
+                            {% elif side.display_type == 2 %}
+                            <ul>
+                                {% for recently_post in recently_posts %}
+                                <li>
+                                    <a href="{% url 'detail' recently_post.id %}">{{ recently_post.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% elif side.display_type == 3 %}
+                            <ul>
+                                {% for host_post in host_posts %}
+                                <li>
+                                    <a href="{% url 'detail' host_post.id %}">{{ host_post.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="footer">
+		<div class="container">
+            <hr/>
+			<nav class="nav category">
+                {% for cate in cate %}
+                    <a href="{% url 'category' cate.id %}">{{ cate.name }}</a>
+                {% endfor%}
+			</nav>
+		</div>
+		<div class="container power">
+			<span class="text-muted">Power by TypeIdea@LIBSH</span>
+		</div>
+        {% block javascript %}
+        {% endblock %}
+	</footer>
+
+  </body>
+</html>
