@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-# from django.http import HttpResponse
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage
-from django.db.models import F
 from django.http import Http404
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 # Create your views here.
 from blog.models import Post, Tag, Category
-from comment.forms import CommentForm
 from comment.models import Comment
 from comment.views import CommentShowMixin
 from config.models import SideBar
