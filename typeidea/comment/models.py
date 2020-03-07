@@ -14,7 +14,7 @@ class Comment(models.Model):
         (2, "删除"),
     )
 
-    post = models.ForeignKey(Post, verbose_name="文章")
+    target = models.CharField(max_length=50, null=True, verbose_name="评论目标")
     content = models.CharField(max_length=2000, verbose_name="内容")
     status = models.IntegerField(default=1, choices=STATUS_ITEMS, verbose_name="状态")
     nickname = models.CharField(max_length=50, verbose_name="昵称")
@@ -30,3 +30,4 @@ class Comment(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "评论"
+        ordering = ['-id']
