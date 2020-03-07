@@ -2,10 +2,8 @@
 from __future__ import unicode_literals
 
 import xadmin
-# from django.contrib import admin
 
 from typeidea.custom_admin import BaseOwnerAdmin
-# from typeidea.custom_site import custom_site
 from .models import Link, SideBar
 
 # Register your models here.
