@@ -11,7 +11,7 @@ from typeidea.autocomplete import CategoryAutocomplete, TagAutocomplete
 from blog.views import IndexView, TagView, CategoryView, PostView, AuthorView
 from comment.views import CommentView
 from config.views import LinkView
-# from typeidea.custom_admin import BaseOwnerAdmin  #NOQA
+from typeidea.custom_admin import BaseOwnerAdmin  # NOQA
 xadmin.autodiscover()
 xversion.register_models()
 
