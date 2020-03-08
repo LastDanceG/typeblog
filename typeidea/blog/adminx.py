@@ -80,6 +80,10 @@ class CategoryAdmin(BaseOwnerAdmin):
     actions_on_bottom = True
     date_hierarchy = 'create_time'
     list_editable = ['status']
+    fields = (
+        'name', 'status',
+        'is_nav',
+    )
 
 
 class TagAdmin(BaseOwnerAdmin):
@@ -89,6 +93,9 @@ class TagAdmin(BaseOwnerAdmin):
     actions_on_bottom = True
     date_hierarchy = 'create_time'
     list_editable = ['status']
+    fields = (
+        'name', 'status'
+    )
 
 
 xadmin.site.register(Post, PostAdmin)
