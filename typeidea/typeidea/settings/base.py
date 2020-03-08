@@ -25,7 +25,7 @@ SECRET_KEY = 'v59sy6vq%pka8&3$_^1!zmnupyrsv+h4ck1t8lk*)mm=gv&(40'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'ckeditor_uploader',
+
+    'rest_framework',
 
     'xadmin',
     'crispy_forms',
@@ -118,6 +120,7 @@ USE_TZ = True
 THEME = 'themes/default/'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '../static_file/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, THEME, 'static'),
@@ -146,7 +149,12 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'height': 300,
         'width': 800,
-        'tabSpaces': 4
+        'tabSpaces': 4,
+        # 'toolbar_Custom': [
+        #     ['NumberedList', 'BulletedList'],
+        #     ['Blockquote', 'CodeSnippet'],
+        # ],
+        # 'extraPlugins': ','.join(['codesnippet', 'widget', 'lineutils', ]),
     }
 }
 
