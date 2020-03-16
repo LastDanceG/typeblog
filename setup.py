@@ -21,12 +21,13 @@ setup(
     install_requires=[
         'django==1.11.3',
         'django-autocomplete-light==3.2.10',
-        'hiredis==1.0.1'
+        'hiredis==1.0.1',
         'redis==2.10.6',
         'django-ckeditor==5.3.1',
         'django-debug-toolbar==1.11',
         'mysqlclient==1.4.6',
         'Pillow==4.3.0',
+        'future==0.18.2',
         'djangorestframework==3.7.0',
         'django-reversion==2.0.10',
         'Markdown==2.6.9',
